@@ -2,12 +2,11 @@
 #include <string>
 using namespace std;
 
-// Estructura del nodo del árbol 
- struct Nodo {
-    int id;
+struct Persona {
     string nombre;
-    string fechaNacimiento;
-    Nodo* izquierdo;
-    Nodo* derecho;
-    Nodo* padre; // para rastrear ancestros
+    int edad;
+    Persona* izq;
+    Persona* der;
 };
+
+//crear persona 
