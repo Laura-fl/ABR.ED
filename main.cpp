@@ -1,12 +1,20 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
 
-struct Persona {
-    string nombre;
-    int edad;
-    Persona* izq;
-    Persona* der;
+struct persona{
+	nodo* raiz;
+	string nombre;
+	int edad;
+	persona* izq;
+	persona* der;
 };
 
-//crear persona 
+nodo* nuevapersona(string nombre, int edad) {
+	persona* nueva = new persona();
+	nueva->nombre = nombre;
+	nueva->edad = edad;
+	nueva->izq = NULL;
+	nueva->der = NULL;
+
+	return nueva;
+}
