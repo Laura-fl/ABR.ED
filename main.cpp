@@ -18,3 +18,23 @@ nodo* nuevapersona(string nombre, int edad) {
 
 	return nueva;
 }
+
+// Insertar ordenado (ABB por nombre)
+Persona* insertar(Persona* raiz, string nombre, int edad) {
+    if (raiz == NULL)
+        return nuevaPersona(nombre, edad);
+    if (nombre < raiz->nombre)
+        raiz->izq = insertar(raiz->izq, nombre, edad);
+    else
+        raiz->der = insertar(raiz->der, nombre, edad);
+    return raiz;
+}
+
+// Mostrar en orden (inorden)
+void inorden(Persona* raiz) {
+    if (raiz != NULL) {
+        inorden(raiz->izq);
+        cout << "Nombre: " << raiz->nombre << ", Edad: " << raiz->edad << endl;
+        inorden(raiz->der);
+    }
+}
