@@ -29,4 +29,14 @@ Persona* insertar(Persona* raiz, string nombre, int edad, int id) {
         raiz->der = insertar(raiz->der, nombre, edad, id);
     return raiz;
 }
+int contarDigitos(int n) {
+    if (n == 0) return 1;
+    int c = 0;
+    while (n != 0) {
+        c++;
+        n /= 10;
+    }
+    return c;
+}
+
 
