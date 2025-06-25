@@ -78,3 +78,81 @@ void posorden(Persona* raiz) {
         cout << "Nombre: " << raiz->nombre << ", Edad: " << raiz->edad << endl;
     }
 }
+
+//=======================================menu interactivo============================//
+
+
+void mostrarMenu() {
+    cout << "\n=== MENU ===\n";
+    cout << "1. Insertar persona (por consola)\n";
+    cout << "2. Eliminar persona\n";
+    cout << "3. Mostrar arbol en orden (por edad)\n";
+    cout << "4. Mostrar generaciones (por id)\n";
+    cout << "5. Recorridos (pre, in, pos)\n";
+    cout << "6. Balancear arbol\n";
+    cout << "0. Salir\n";
+    cout << "Seleccion: ";
+}
+
+// Programa principal
+int main() {
+    Persona* raiz = NULL;
+    int opcion;
+
+    do {
+        mostrarMenu();
+        cin >> opcion;
+        cin.ignore();
+
+        switch (opcion) {
+        case 1: {
+            string nombre;
+            int edad, id;
+            cout << "Nombre: ";
+            getline(cin, nombre);
+            cout << "Edad: ";
+            cin >> edad;
+            cout << "ID (#digitos = #generacion): ";
+            cin >> id;
+            raiz = insertar(raiz, nombre, edad, id);
+            break;
+        }
+        case 2: {
+            string nombre;
+            cout << "Nombre a eliminar: ";
+            getline(cin, nombre);
+            raiz = eliminar(raiz, nombre);
+            break;
+        }
+        case 3:
+            cout << "\n--- Arbol en orden (por edad) ---\n";
+            inorden(raiz);
+            break;
+        case 4:
+            cout << "\n--- Mostrar generaciones ---\n";
+            mostrarTodasGeneraciones(raiz, 4);
+            break;
+        case 5:
+            cout << "--- Recorridos ---\n";
+            cout << "Preorden:\n";
+            preorden(raiz);
+            cout << "Inorden:\n";
+            inorden(raiz);
+            cout << "Posorden:\n";
+            posorden(raiz);
+            break;
+        case 6:
+            cout << "--- Balanceando el arbol ---\n";
+            raiz = balancearArbol(raiz);
+            cout << "Árbol balanceado correctamente.\n";
+            break;
+        case 0:
+            cout << "Saliendo...\n";
+            break;
+        default:
+            cout << "Opcion invalida.\n";
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
