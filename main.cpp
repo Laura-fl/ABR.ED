@@ -98,15 +98,34 @@ Persona* minimo(Persona* nodo) {
     return nodo;
 }
 
+// Eliminar persona por nombre
+Persona* eliminar(Persona* raiz, string nombre) {
+    if (raiz == NULL) return NULL;
 
+    if (nombre < raiz->nombre)
+        raiz->izq = eliminar(raiz->izq, nombre);
+    else if (nombre > raiz->nombre)
+        raiz->der = eliminar(raiz->der, nombre);
+    else {
+        if (raiz->izq == NULL) {
+            Persona* temp = raiz->der;
+            delete raiz;
+            return temp;
+        }
+        else if (raiz->der == NULL) {
+            Persona* temp = raiz->izq;
+            delete raiz;
+            return temp;
+        }
 
-
-
-
-
-
-
-
+        Persona* temp = minimo(raiz->der);
+        raiz->nombre = temp->nombre;
+        raiz->edad = temp->edad;
+        raiz->id = temp->id;
+        raiz->der = eliminar(raiz->der, temp->nombre);
+    }
+    return raiz;
+}
 
 //=======================================menu interactivo============================//
 
