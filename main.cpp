@@ -90,6 +90,24 @@ void posorden(Persona* raiz) {
     }
 }
 
+//===========================================eliminacion de nodos y funciones auxiliares=========================================//
+//buscar el minimo (sucesor)
+Persona* minimo(Persona* nodo) {
+    while (nodo && nodo->izq != NULL)
+        nodo = nodo->izq;
+    return nodo;
+}
+
+
+
+
+
+
+
+
+
+
+
 //=======================================menu interactivo============================//
 
 
