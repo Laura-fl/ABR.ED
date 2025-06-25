@@ -1,8 +1,8 @@
-#include <iostream> 
+#include <iostream>
 #include <string>
 using namespace std;
 
-//funciones base del arbol 
+
 struct Persona {
     string nombre;
     int edad;
@@ -10,7 +10,14 @@ struct Persona {
     Persona* izq;
     Persona* der;
 };
+//===============funciones del arbol================================//
 
+// Máximo número de nodos permitidos para el arreglo estático
+const int MAX = 100;
+Persona* arreglo[MAX];
+int total = 0;
+
+// Crear nueva persona
 Persona* nuevaPersona(string nombre, int edad, int id) {
     Persona* nueva = new Persona();
     nueva->nombre = nombre;
@@ -20,6 +27,8 @@ Persona* nuevaPersona(string nombre, int edad, int id) {
     nueva->der = NULL;
     return nueva;
 }
+
+// Insertar en el árbol
 Persona* insertar(Persona* raiz, string nombre, int edad, int id) {
     if (raiz == NULL)
         return nuevaPersona(nombre, edad, id);
@@ -29,6 +38,8 @@ Persona* insertar(Persona* raiz, string nombre, int edad, int id) {
         raiz->der = insertar(raiz->der, nombre, edad, id);
     return raiz;
 }
+
+// Contar dígitos del ID
 int contarDigitos(int n) {
     if (n == 0) return 1;
     int c = 0;
