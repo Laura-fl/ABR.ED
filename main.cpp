@@ -38,7 +38,9 @@ int contarDigitos(int n) {
     }
     return c;
 }
-//generacion y recorridos del arbol
+
+//============================generacion y recorridos del arbol=====================//
+// Mostrar por generación
 void mostrarPorGeneracion(Persona* raiz, int gen) {
     if (raiz == NULL) return;
     mostrarPorGeneracion(raiz->izq, gen);
@@ -46,6 +48,7 @@ void mostrarPorGeneracion(Persona* raiz, int gen) {
         cout << raiz->nombre << " (" << raiz->edad << ") ";
     mostrarPorGeneracion(raiz->der, gen);
 }
+// Mostrar todas las generaciones
 void mostrarTodasGeneraciones(Persona* raiz, int maxGen) {
     for (int i = 1; i <= maxGen; i++) {
         cout << i << "ra generacion: ";
@@ -53,6 +56,7 @@ void mostrarTodasGeneraciones(Persona* raiz, int maxGen) {
         cout << endl;
     }
 }
+// Recorridos
 void inorden(Persona* raiz) {
     if (raiz != NULL) {
         inorden(raiz->izq);
