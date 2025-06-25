@@ -32,7 +32,7 @@ Persona* nuevaPersona(string nombre, int edad, int id) {
 Persona* insertar(Persona* raiz, string nombre, int edad, int id) {
     if (raiz == NULL)
         return nuevaPersona(nombre, edad, id);
-    if (edad < raiz->edad)
+    if (nombre < raiz->nombre)
         raiz->izq = insertar(raiz->izq, nombre, edad, id);
     else
         raiz->der = insertar(raiz->der, nombre, edad, id);
@@ -51,6 +51,7 @@ int contarDigitos(int n) {
 }
 
 //============================generacion y recorridos del arbol=====================//
+
 // Mostrar por generación
 void mostrarPorGeneracion(Persona* raiz, int gen) {
     if (raiz == NULL) return;
@@ -59,6 +60,7 @@ void mostrarPorGeneracion(Persona* raiz, int gen) {
         cout << raiz->nombre << " (" << raiz->edad << ") ";
     mostrarPorGeneracion(raiz->der, gen);
 }
+
 // Mostrar todas las generaciones
 void mostrarTodasGeneraciones(Persona* raiz, int maxGen) {
     for (int i = 1; i <= maxGen; i++) {
@@ -67,6 +69,7 @@ void mostrarTodasGeneraciones(Persona* raiz, int maxGen) {
         cout << endl;
     }
 }
+
 // Recorridos
 void inorden(Persona* raiz) {
     if (raiz != NULL) {
@@ -75,6 +78,7 @@ void inorden(Persona* raiz) {
         inorden(raiz->der);
     }
 }
+
 void preorden(Persona* raiz) {
     if (raiz != NULL) {
         cout << "Nombre: " << raiz->nombre << ", Edad: " << raiz->edad << endl;
@@ -82,6 +86,7 @@ void preorden(Persona* raiz) {
         preorden(raiz->der);
     }
 }
+
 void posorden(Persona* raiz) {
     if (raiz != NULL) {
         posorden(raiz->izq);
@@ -91,7 +96,8 @@ void posorden(Persona* raiz) {
 }
 
 //===========================================eliminacion de nodos y funciones auxiliares=========================================//
-//buscar el minimo (sucesor)
+
+// Buscar el mínimo (sucesor)
 Persona* minimo(Persona* nodo) {
     while (nodo && nodo->izq != NULL)
         nodo = nodo->izq;
@@ -135,8 +141,8 @@ void guardarEnArreglo(Persona* raiz) {
     guardarEnArreglo(raiz->izq);
     arreglo[total++] = raiz;
     guardarEnArreglo(raiz->der);
- }
- 
+}
+
 // Reconstruir árbol balanceado desde arreglo
 Persona* construirBalanceadoSimple(int inicio, int fin) {
     if (inicio > fin) return NULL;
@@ -153,7 +159,6 @@ Persona* balancearArbol(Persona* raiz) {
     guardarEnArreglo(raiz);
     return construirBalanceadoSimple(0, total - 1);
 }
-
 //=======================================menu interactivo============================//
 
 
@@ -171,7 +176,16 @@ void mostrarMenu() {
 
 // Programa principal
 int main() {
+    
     Persona* raiz = NULL;
+
+   // raiz = insertar(raiz, "Pedro", 60, 1001);
+    //raiz = insertar(raiz, "Ana", 40, 1002);
+    //raiz = insertar(raiz, "Luis", 70, 1003);
+    //raiz = insertar(raiz, "Carla", 30, 1004);
+    //raiz = insertar(raiz, "Jose", 50, 1005);
+
+
     int opcion;
 
     do {
@@ -219,7 +233,7 @@ int main() {
         case 6:
             cout << "--- Balanceando el arbol ---\n";
             raiz = balancearArbol(raiz);
-            cout << "Árbol balanceado correctamente.\n";
+            cout << "arbol balanceado correctamente.\n";
             break;
         case 0:
             cout << "Saliendo...\n";
