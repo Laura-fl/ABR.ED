@@ -129,30 +129,7 @@ Persona* eliminar(Persona* raiz, string nombre) {
 
 //============================ Balanceo del árbol=================================//
 
-// Guardar nodos en arreglo (inorden)
-void guardarEnArreglo(Persona* raiz) {
-    if (raiz == NULL) return;
-    guardarEnArreglo(raiz->izq);
-    arreglo[total++] = raiz;
-    guardarEnArreglo(raiz->der);
- }
- 
-// Reconstruir árbol balanceado desde arreglo
-Persona* construirBalanceadoSimple(int inicio, int fin) {
-    if (inicio > fin) return NULL;
-    int medio = (inicio + fin) / 2;
-    Persona* nodo = arreglo[medio];
-    nodo->izq = construirBalanceadoSimple(inicio, medio - 1);
-    nodo->der = construirBalanceadoSimple(medio + 1, fin);
-    return nodo;
-}
 
-// Función principal de balanceo
-Persona* balancearArbol(Persona* raiz) {
-    total = 0;
-    guardarEnArreglo(raiz);
-    return construirBalanceadoSimple(0, total - 1);
-}
 
 //=======================================menu interactivo============================//
 
