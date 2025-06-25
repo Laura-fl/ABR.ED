@@ -9,13 +9,3 @@ struct Persona {
     int id;
     Persona* izq;
     Persona* der;
-};
-Persona* nuevaPersona(string nombre, int edad, int id) {
-    Persona* nueva = new Persona();
-    nueva->nombre = nombre;
-    nueva->edad = edad;
-    nueva->id = id;
-    nueva->izq = NULL;
-    nueva->der = NULL;
-    return nueva;
-}
