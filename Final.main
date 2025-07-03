@@ -2,7 +2,8 @@
 #include <string>       
 using namespace std;   
 
-struct nodo {      
+struct nodo {   
+    string mensaje;
     int valor;                     
     nodo* izq;       
     nodo* der;       
@@ -30,27 +31,27 @@ void isnertarnodo(nodo*& raiz, int valor)
     }
 }
 // Recorridos
-void inorden(Valor* raiz) {
+void inorden(nodo* raiz) {
     if (raiz != NULL) {
         inorden(raiz->izq);
-        cout <<"Valor: " << raiz->valor << endl;
+        cout << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
         inorden(raiz->der);
     }
 }
 
-void preorden(Valor* raiz) {
+void preorden(nodo* raiz) {
     if (raiz != NULL) {
-        cout << "Valor: "<< endl;
+        cout << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
         preorden(raiz->izq);
         preorden(raiz->der);
     }
 }
 
-void posorden(Valor* raiz) {
+void posorden(nodo* raiz) {
     if (raiz != NULL) {
         posorden(raiz->izq);
         posorden(raiz->der);
-        cout << "Valor: " << endl;
+        cout << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
     }
 }
 //=======================================menu============================//
