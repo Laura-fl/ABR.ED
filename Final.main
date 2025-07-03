@@ -1,113 +1,156 @@
-#include <iostream>     
-#include <string>       
-using namespace std;   
+#include <iostream>
+#include <string>
+using namespace std;
 
-struct nodo {   
+// Estructura del nodo del arbol
+struct Nodo {
+    int valor;
     string mensaje;
-    int valor;                     
-    nodo* izq;       
-    nodo* der;       
+    Nodo* izquierdo;
+    Nodo* derecho;
 };
 
-nodo *izq=NULL;
-nodo* der=NULL;
-
-nodo* nuevonodo(int valor) {
-    nodo* nuevo = new nodo();
+// Funcion para crear un nuevo nodo
+Nodo* crearNodo(int valor, string mensaje) {
+    Nodo* nuevo = new Nodo;
     nuevo->valor = valor;
-    nuevo->izq = NULL;
-    nuevo->der = NULL;
+    nuevo->mensaje = mensaje;
+    nuevo->izquierdo = NULL;
+    nuevo->derecho = NULL;
     return nuevo;
 }
 
-void isnertarnodo(nodo*& raiz, int valor)
-{
+// Funcion para insertar un nodo en el arbol
+void insertarNodo(Nodo* &raiz, int valor, string mensaje) {
     if (raiz == NULL) {
-        raiz = nuevonodo(valor);
+        raiz = crearNodo(valor, mensaje);
+        cout << "Elemento no existia, se acaba de ingresar.\n";
     } else if (valor < raiz->valor) {
-        insertar(raiz->izq, valor);
+        insertarNodo(raiz->izquierdo, valor, mensaje);
+    } else if (valor > raiz->valor) {
+        insertarNodo(raiz->derecho, valor, mensaje);
     } else {
-        insertar(raiz->der, valor);
-    }
-}
-// Recorridos
-void inorden(nodo* raiz) {
-    if (raiz != NULL) {
-        inorden(raiz->izq);
-        cout << "; " << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
-        inorden(raiz->der);
+        cout << "Elemento ya existe, no se inserto.\n";
     }
 }
 
-void preorden(nodo* raiz) {
+// Recorrido Inorden
+void inOrden(Nodo* raiz) {
     if (raiz != NULL) {
-        cout << "; " << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
-        preorden(raiz->izq);
-        preorden(raiz->der);
+        inOrden(raiz->izquierdo);
+        cout << raiz->valor << " - " << raiz->mensaje << endl;
+        inOrden(raiz->derecho);
     }
 }
 
-void posorden(nodo* raiz) {
+// Recorrido Preorden
+void preOrden(Nodo* raiz) {
     if (raiz != NULL) {
-        posorden(raiz->izq);
-        posorden(raiz->der);
-        cout << "; " << "valor: " << raiz->valor << ", mensaje del nodo: " << raiz->mensaje << endl;
+        cout << raiz->valor << " - " << raiz->mensaje << endl;
+        preOrden(raiz->izquierdo);
+        preOrden(raiz->derecho);
     }
 }
-//=======================================menu============================//
+
+// Recorrido Postorden
+void postOrden(Nodo* raiz) {
+    if (raiz != NULL) {
+        postOrden(raiz->izquierdo);
+        postOrden(raiz->derecho);
+        cout << raiz->valor << " - " << raiz->mensaje << endl;
+    }
+}
+
+// Funcion para buscar un valor y mostrar la ruta
+bool buscarRuta(Nodo* raiz, int valor, bool &encontrado) {
+    if (raiz == NULL) return false;
+
+    if (raiz->valor == valor || 
+        buscarRuta(raiz->izquierdo, valor, encontrado) || 
+        buscarRuta(raiz->derecho, valor, encontrado)) {
+
+        if (raiz->valor == valor) encontrado = true;
+        if (encontrado) cout << raiz->mensaje << endl;
+        return true;
+    }
+    return false;
+}
+
+// Menu
 void mostrarMenu() {
-    cout << "\n=== MENU ===\n";
+    cout << "*********************\n";
+    cout << "Menu\n";
     cout << "1. Insertar nodo\n";
     cout << "2. Mostrar in orden\n";
     cout << "3. Mostrar pre orden\n";
     cout << "4. Mostrar post orden\n";
     cout << "5. Decision\n";
     cout << "6. Salir\n";
-    cout << "Seleccion: ";
+    cout << "*********************\n";
+}
 
+// Inicializar arbol
+void inicializarArbol(Nodo* &raiz) {
+    insertarNodo(raiz, 50, "Quieres tener una mascota");
+    insertarNodo(raiz, 30, "Prefieres ANIMALES PEQUENOS");
+    insertarNodo(raiz, 10, "Adopta un HAMSTER");
+    insertarNodo(raiz, 40, "Adopta un GATO");
+    insertarNodo(raiz, 70, "Prefieres ANIMALES GRANDES");
+    insertarNodo(raiz, 60, "Adopta un PERRO");
+    insertarNodo(raiz, 80, "Adopta un CABALLO");
+}
+
+// Main
 int main() {
-    
     Nodo* raiz = NULL;
-    
-    int opcion;
+    inicializarArbol(raiz);
+
+    int opcion, valor;
+    string mensaje;
+    bool encontrado = false;
 
     do {
         mostrarMenu();
+        cout << "Seleccione opcion: ";
         cin >> opcion;
-        cin.ignore();
 
-        switch (opcion) {
-        case 1: {
-            int valor;
-            cout << "cual es el valor que quiere buscar: ";
-            getline(cin, valor);
-            raiz = insertar(raiz,valor);
-            break;
+        switch(opcion) {
+            case 1:
+                cout << "Ingrese valor del nodo: ";
+                cin >> valor;
+                cin.ignore(); // Limpia el buffer
+                cout << "Ingrese mensaje del nodo: ";
+                getline(cin, mensaje);
+                insertarNodo(raiz, valor, mensaje);
+                break;
+            case 2:
+                cout << "Recorrido Inorden:\n";
+                inOrden(raiz);
+                break;
+            case 3:
+                cout << "Recorrido Preorden:\n";
+                preOrden(raiz);
+                break;
+            case 4:
+                cout << "Recorrido Postorden:\n";
+                postOrden(raiz);
+                break;
+            case 5:
+                cout << "Ingrese valor a buscar: ";
+                cin >> valor;
+                encontrado = false;
+                buscarRuta(raiz, valor, encontrado);
+                if (!encontrado) {
+                    cout << "Valor no encontrado en el arbol.\n";
+                }
+                break;
+            case 6:
+                cout << "Saliendo del programa.\n";
+                break;
+            default:
+                cout << "Opcion no valida. Intente de nuevo.\n";
         }
-        case 2: {
-            
-            cout << "\n----Mostrar recorrido INORDEN---------";
-            inorden(raiz)
-            break;
-        }
-        case 3:
-            cout << "\n----Mostrar recorrido PREORDEN--------\n";
-            preorden(raiz);
-            break;
-        case 4:
-            cout << "\n------ Mostrar recorrido POSTORDEN ---\n";
-            postorden(raiz);
-            break;
-        case 5:
-            cout << "--- BUSQUEDA DE NODO ---\n";
-            cout <<"Ingrese el VALOR a buscar: "<<end
-            break;
-        case 6:
-            cout << "--- salir ---\n";
-            break;
-        default:
-            cout << "Opcion invalida.\n";
-        }
+
     } while (opcion != 6);
 
     return 0;
