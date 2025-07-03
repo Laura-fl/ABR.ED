@@ -29,6 +29,30 @@ void isnertarnodo(nodo*& raiz, int valor)
         insertar(raiz->der, valor);
     }
 }
+// Recorridos
+void inorden(Valor* raiz) {
+    if (raiz != NULL) {
+        inorden(raiz->izq);
+        cout <<"Valor: " << raiz->valor << endl;
+        inorden(raiz->der);
+    }
+}
+
+void preorden(Valor* raiz) {
+    if (raiz != NULL) {
+        cout << "Valor: "<< endl;
+        preorden(raiz->izq);
+        preorden(raiz->der);
+    }
+}
+
+void posorden(Valor* raiz) {
+    if (raiz != NULL) {
+        posorden(raiz->izq);
+        posorden(raiz->der);
+        cout << "Valor: " << endl;
+    }
+}
 
 int main() {
     
