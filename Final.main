@@ -64,7 +64,7 @@ void mostrarMenu() {
     cout << "5. Decision\n";
     cout << "6. Salir\n";
     cout << "Seleccion: ";
-
+}
 int main() {
     
     Nodo* raiz = NULL;
