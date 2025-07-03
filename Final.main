@@ -53,7 +53,7 @@ void posorden(Valor* raiz) {
         cout << "Valor: " << endl;
     }
 }
-//=======================================menu interactivo============================//
+//=======================================menu============================//
 void mostrarMenu() {
     cout << "\n=== MENU ===\n";
     cout << "1. Insertar nodo\n";
