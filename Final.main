@@ -99,7 +99,7 @@ int main() {
             break;
         case 5:
             cout << "--- BUSQUEDA DE NODO ---\n";
-            cout <<"Ingrese el nodo a buscar: "<<end
+            cout <<"Ingrese el VALOR a buscar: "<<end
             break;
         case 6:
             cout << "--- salir ---\n";
