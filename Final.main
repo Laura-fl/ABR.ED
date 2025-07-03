@@ -10,3 +10,11 @@ struct nodo {
 
 nodo *izq=NULL;
 nodo* der=NULL;
+
+nodo* nuevonodo(int valor) {
+    nodo* nuevo = new nodo();
+    nuevo->valor = valor;
+    nuevo->izq = NULL;
+    nuevo->der = NULL;
+    return nuevo;
+}
