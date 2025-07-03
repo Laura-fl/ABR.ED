@@ -13,9 +13,9 @@ void mostrarMenu() {
     cout << "1. Insertar nodo\n";
     cout << "2. Mostrar in orden\n";
     cout << "3. Mostrar pre orden\n";
-    cout << "4. Mostrar generaciones (por id)\n";
-    cout << "5. Mostrar post orden\n";
-    cout << "6. Decision\n";
+    cout << "4. Mostrar post orden\n";
+    cout << "5. Decision\n";
+    cout << "6. Salir\n";
     cout << "Seleccion: ";
     
 // Recorridos
