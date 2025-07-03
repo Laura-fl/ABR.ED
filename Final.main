@@ -3,8 +3,7 @@
 using namespace std;   
 
 struct nodo {      
-    int num;           
-    int id;             
+    int valor;                     
     Persona* izq;       
     Persona* der;       
 };
