@@ -18,3 +18,16 @@ nodo* nuevonodo(int valor) {
     nuevo->der = NULL;
     return nuevo;
 }
+
+void isnertarnodo(nodo*& raiz, int valor)
+{
+    if (raiz == NULL) {
+        raiz = nuevonodo(valor);
+    } else if (valor < raiz->valor) {
+        insertar(raiz->izq, valor);
+    } else {
+        insertar(raiz->der, valor);
+    }
+}
+
+    
