@@ -4,6 +4,9 @@ using namespace std;
 
 struct nodo {      
     int valor;                     
-    Persona* izq;       
-    Persona* der;       
+    nodo* izq;       
+    nodo* der;       
 };
+
+nodo *izq=NULL;
+nodo* der=NULL;
