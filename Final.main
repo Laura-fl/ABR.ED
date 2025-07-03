@@ -30,4 +30,65 @@ void isnertarnodo(nodo*& raiz, int valor)
     }
 }
 
+
+void mostrarMenu() {
+    cout << "\n=== MENU ===\n";
+    cout << "1. Insertar Nodo \n";
+    cout << "2. Mostrar recorrido INORDEN\n";
+    cout << "3. Mostrar recorrido Preorden \n";
+    cout << "4. Mostrar recorrido Postorden\n";
+    cout << "5. Busqueda de nodo \n";
+    cout << "6. Salir\n";
+    cout << "Seleccion: ";
+}
+
+int main() {
+    
+    Nodo* raiz = NULL;
+    
+    int opcion;
+
+    do {
+        mostrarMenu();
+        cin >> opcion;
+        cin.ignore();
+
+        switch (opcion) {
+        case 1: {
+            int valor;
+            cout << "cual es el valor que quiere buscar: ";
+            getline(cin, valor);
+            raiz = insertar(raiz,valor);
+            break;
+        }
+        case 2: {
+            
+            cout << "\n----Mostrar recorrido INORDEN---------";
+            inorden(raiz)
+            break;
+        }
+        case 3:
+            cout << "\n----Mostrar recorrido PREORDEN--------\n";
+            preorden(raiz);
+            break;
+        case 4:
+            cout << "\n------ Mostrar recorrido POSTORDEN ---\n";
+            postorden(raiz);
+            break;
+        case 5:
+            cout << "--- BUSQUEDA DE NODO ---\n";
+            cout <<"Ingrese el nodo a buscar: "<<end
+            break;
+        case 6:
+            cout << "--- Balanceando el arbol ---\n";
+            raiz = balancearArbol(raiz);
+            cout << "arbol balanceado correctamente.\n";
+            break;
+        default:
+            cout << "Opcion invalida.\n";
+        }
+    } while (opcion != 6);
+
+    return 0;
+}
     
